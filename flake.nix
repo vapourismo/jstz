@@ -72,10 +72,12 @@
             buildInputs = with pkgs;
               [
                 llvmPackages_16.clangNoLibc
-                (rust-bin.stable."1.73.0".default.override {
-                  targets = ["wasm32-unknown-unknown"];
-                })
-                rust-analyzer
+                # (rust-bin.stable."1.73.0".default.override {
+                #   targets = ["wasm32-unknown-unknown"];
+                # })
+                # rust-analyzer
+                libiconv
+                rustup
                 wabt
 
                 nodejs
