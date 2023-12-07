@@ -32,7 +32,7 @@ tezos-smart-rollup.workspace = true
 tezos-smart-rollup-mock.workspace = true
 tezos-smart-rollup-installer-config.workspace = true
 serde_yaml = "0.8"
-tezos_crypto_rs = "0.5.2"
+tezos_crypto_rs = { version = "0.5.2", default-features = false }
 sha2 = "0.9"
 rand = "0.8"
 tiny-bip39 = "1.0.0"
