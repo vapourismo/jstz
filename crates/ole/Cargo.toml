@@ -1,0 +1,33 @@
+[package]
+name = "ole"
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies.rand_core]
+version = "0.6.4"
+features = ["getrandom"]
+
+[dependencies.bincode]
+version = "1.3.3"
+
+[dependencies.jstz_kernel]
+path = "../jstz_kernel"
+
+[dependencies.jstz_proto]
+path = "../jstz_proto"
+
+[dependencies.jstz_crypto]
+path = "../jstz_crypto"
+
+[dependencies.tezos_crypto_rs]
+default-features = false
+version = "0.5.2"
+
+[dependencies.ed25519-dalek]
+version = "*"
+features = ["rand_core"]
+
+[dependencies.http]
+version = "0.2"

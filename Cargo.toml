@@ -1,13 +1,14 @@
 [workspace]
 members = [
-    "crates/jstz_core",
-    "crates/jstz_api",
-    "crates/jstz_proto",
-    "crates/jstz_crypto",
-    "crates/jstz_kernel",
-    "crates/jstz_cli",
-    "crates/jstz_node",
-    "crates/jstz_wpt",
+  "crates/jstz_core",
+  "crates/jstz_api",
+  "crates/jstz_proto",
+  "crates/jstz_crypto",
+  "crates/jstz_kernel",
+  "crates/jstz_cli",
+  "crates/jstz_node",
+  "crates/jstz_wpt",
+  "crates/ole",
 ]
 
 
@@ -28,37 +29,44 @@ jstz_cli = { path = "crates/jstz_cli" }
 jstz_wpt = { path = "crates/jstz_wpt" }
 
 [workspace.dependencies.tezos-smart-rollup]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/sdk"
 default-features = false
-features = ["std", "crypto", "panic-hook", "data-encoding", "storage", "proto-alpha"]
+features = [
+  "std",
+  "crypto",
+  "panic-hook",
+  "data-encoding",
+  "storage",
+  "proto-alpha",
+]
 
 [workspace.dependencies.tezos-smart-rollup-host]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/host"
 features = ["proto-alpha"]
 
 [workspace.dependencies.tezos-smart-rollup-core]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/core"
 
 [workspace.dependencies.tezos-smart-rollup-mock]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/mock"
 
 [workspace.dependencies.tezos-smart-rollup-encoding]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/encoding"
 
 [workspace.dependencies.tezos-smart-rollup-entrypoint]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/entrypoint"
 
 [workspace.dependencies.tezos-smart-rollup-debug]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/debug"
 
 [workspace.dependencies.tezos-smart-rollup-panic-hook]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/panic-hook"
 
 [workspace.dependencies.tezos-smart-rollup-storage]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/storage"
 
 [workspace.dependencies.tezos-smart-rollup-installer-config]
-version = "0.2.2"
+path = "../tezos/src/kernel_sdk/installer-config"
 
 [patch.crates-io]
 boa_ast = { git = "https://github.com/trilitech/boa.git", branch = "ajob410@create-realm-with-default-globals" }
