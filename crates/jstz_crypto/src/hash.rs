@@ -11,9 +11,31 @@ impl ToString for Blake2b {
     }
 }
 
+#[cfg(all(target_os = "hermit", target_arch = "riscv64"))]
+unsafe fn blake2b_hash(msg: *const u8, msg_len: u64) -> Vec<u8> {
+    let mut result = vec![0u8; 32];
+    let out = result.as_mut_ptr();
+
+    core::arch::asm!(
+        "ecall",
+        in("a6") 0x07,
+        in("a7") 0x0A000000u64,
+        in("a0") out,
+        in("a1") msg,
+        in("a2") msg_len,
+    );
+
+    result
+}
+
 impl<'a> From<&'a [u8]> for Blake2b {
     fn from(data: &'a [u8]) -> Self {
+        #[cfg(not(all(target_os = "hermit", target_arch = "riscv64")))]
         let digest = tezos_crypto_rs::blake2b::digest_256(data).unwrap();
+
+        #[cfg(all(target_os = "hermit", target_arch = "riscv64"))]
+        let digest = unsafe { blake2b_hash(data.as_ptr(), data.len() as u64) };
+
         Self(digest.try_into().unwrap())
     }
 }
