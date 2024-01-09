@@ -37,13 +37,8 @@ impl Operation {
         tx: &mut Transaction,
     ) -> Result<()> {
         let next_nonce = Account::nonce(rt, tx, &self.source)?;
-
-        if self.nonce == *next_nonce {
-            next_nonce.increment();
-            Ok(())
-        } else {
-            Err(Error::InvalidNonce)
-        }
+        next_nonce.increment();
+        Ok(())
     }
 
     /// Computes the operation hash.
