@@ -3351,10 +3351,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tezos-risc-v-constants"
-version = "0.0.0"
-
-[[package]]
 name = "tezos-smart-rollup"
 version = "0.2.2"
 dependencies = [
@@ -3371,10 +3367,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "tezos-smart-rollup-constants"
+version = "0.2.2"
+
+[[package]]
 name = "tezos-smart-rollup-core"
 version = "0.2.2"
 dependencies = [
- "tezos-risc-v-constants",
+ "tezos-smart-rollup-constants",
 ]
 
 [[package]]
