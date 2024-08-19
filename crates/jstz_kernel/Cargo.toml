@@ -29,3 +29,6 @@ tezos_crypto_rs.workspace = true
 
 [dev-dependencies]
 jstz_mock = { path = "../jstz_mock" }
+
+[features]
+static-ticketer = []

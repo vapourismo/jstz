@@ -1,4 +1,4 @@
-use jstz_core::kv::{Storage, Transaction};
+use jstz_core::kv::Transaction;
 use jstz_proto::{executor, Result};
 use tezos_crypto_rs::hash::ContractKt1Hash;
 use tezos_smart_rollup::{
@@ -13,8 +13,15 @@ pub mod inbox;
 
 pub const TICKETER: RefPath = RefPath::assert_from(b"/ticketer");
 
+#[cfg(not(feature = "static-ticketer"))]
 fn read_ticketer(rt: &impl Runtime) -> Option<ContractKt1Hash> {
-    Storage::get(rt, &TICKETER).ok()?
+    jstz_core::kv::Storage::get(rt, &TICKETER).ok()?
+}
+
+#[cfg(feature = "static-ticketer")]
+fn read_ticketer(_rt: &impl Runtime) -> Option<ContractKt1Hash> {
+    option_env!("JSTZ_TICKETER")
+        .and_then(|ticketer| ContractKt1Hash::from_base58_check(ticketer).ok())
 }
 
 fn handle_message(hrt: &mut impl Runtime, message: Message) -> Result<()> {
